@@ -77,9 +77,24 @@ foreach ($smses as $sms) {
         continue;
     }
 
-    print '<tr><td title="'.htmlspecialchars($body).'">' . join('</td><td>',
-          array($sms['readable_date'], $card_number, $partner, $subject, $amount, $comment, $balance)) .
-          '</td></tr>';
+    printf("<tr>" .
+           "<td title='%s' style='white-space:nowrap'>%s</td>" .
+           "<td>%s</td>" .
+           "<td>%s</td>" .
+           "<td>%s</td>" .
+           "<td style='white-space:nowrap'>%s</td>" .
+           "<td>%s</td>" .
+           "<td style='white-space:nowrap'>%s</td>" .
+           "</tr>\n",
+           htmlspecialchars($body),
+           $sms['readable_date'],
+           $card_number,
+           $partner,
+           $subject,
+           $amount,
+           $comment,
+           $balance
+    );
 }
 
 ?>

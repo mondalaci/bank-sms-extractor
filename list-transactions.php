@@ -85,7 +85,7 @@ foreach ($smses as $sms) {
            "<td>%s</td>" .
            "<td>%s</td>" .
            "<td style='white-space:nowrap'>%s</td>" .
-           "<td style='white-space:nowrap'>%s</td>" .
+           "<td style='white-space:nowrap; color:#888'>%s</td>" .
            "</tr>\n",
            htmlspecialchars($body),
            $sms['readable_date'],

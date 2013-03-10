@@ -77,22 +77,22 @@ foreach ($smses as $sms) {
         continue;
     }
 
+    $extended_comment = $subject . ($comment ? ": <i>$comment</i>" : "");
+
     printf("<tr>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td>%s</td>" .
            "<td>%s</td>" .
            "<td>%s</td>" .
            "<td style='white-space:nowrap'>%s</td>" .
-           "<td>%s</td>" .
            "<td style='white-space:nowrap'>%s</td>" .
            "</tr>\n",
            htmlspecialchars($body),
            $sms['readable_date'],
            $card_number,
            $partner,
-           $subject,
+           $extended_comment,
            $amount,
-           $comment,
            $balance
     );
 }

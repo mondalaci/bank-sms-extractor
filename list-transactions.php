@@ -1,5 +1,6 @@
 <meta charset='utf-8'>
-<table border=1>
+<link rel="stylesheet" href="transactions.css">
+<table>
 <?php
 $smses = simplexml_load_file('sms.xml');
 

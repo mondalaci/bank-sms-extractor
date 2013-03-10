@@ -51,12 +51,21 @@ foreach ($smses as $sms) {
             }
         }
     } else if (preg_match('/([0-9]{6} [0-9]{2}:[0-9]{2}) (.+): (.*); (.*); ' .
-                          'Kàrtyaszàm: ...([0-9]{4})(?:; Egyenleg:(.*)) - OTPdirekt/U',
+                          'Kàrtyaszàm: ...([0-9]{4})(.*) - OTPdirekt/U',
                           $body, $matches))
     {
         $is_transaction_successful = true;
         list($body, $timestamp, $subject, $amount, $partner, $card_number, $balance) = $matches;
         $type = 'credit card transfer';
+
+        $recipient_string = '; Elfogadò: ';
+        if (strstr($partner, $recipient_string) !== false) {
+            $partner = str_replace($recipient_string, ' [', $partner) . ']';
+        }
+
+        foreach (array('Egyenleg', 'Egy.') as $balance_string) {
+            $balance = str_replace("; $balance_string: ", "", $balance);
+        }
     } else if (preg_match('/OTPdirekt - .* Jòvàhagyàs [0-9]{2}:[0-9]{2}-ig./', $body, $matches)) {
         $type = 'confirmation';
     } else {

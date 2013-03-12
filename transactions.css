@@ -13,6 +13,10 @@ table {
     empty-cells: show;
 }
 
+tr:hover {
+    background-color: #ddd;
+}
+
 td,th {
     border: 1px solid #ccc;
     padding: 6px 12px;
@@ -24,3 +28,4 @@ td,th {
 th {
     background-color: #dee8f1;
 }
+

@@ -1,5 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset='utf-8'>
 <link rel="stylesheet" href="transactions.css">
+</head>
+<body>
 <table>
 <?php
 $smses = simplexml_load_file('sms.xml');
@@ -99,3 +104,5 @@ foreach ($smses as $sms) {
 
 ?>
 </table>
+</body>
+</html>

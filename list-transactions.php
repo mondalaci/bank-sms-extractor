@@ -96,6 +96,7 @@ foreach ($smses as $sms) {
     $extended_comment = $subject . ($comment ? ": <i>$comment</i>" : "");
 
     printf("<tr>" .
+           "<td><input type='checkbox' data-utime='%s'></td>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td>%s</td>" .
@@ -103,6 +104,7 @@ foreach ($smses as $sms) {
            "<td style='white-space:nowrap; text-align:right'>%s</td>" .
            "<td style='white-space:nowrap; text-align:right; color:#888'>%s</td>" .
            "</tr>\n",
+           $sms['date'],  // utime in microseconds
            htmlspecialchars($body), strftime('%F %T', $sms['date']/1000),  // body title and date stamp content
            $card_number, $card_owner,
            $partner,
@@ -114,5 +116,7 @@ foreach ($smses as $sms) {
 
 ?>
 </table>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="list-transactions.js"></script>
 </body>
 </html>

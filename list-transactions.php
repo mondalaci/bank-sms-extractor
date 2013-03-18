@@ -98,12 +98,12 @@ foreach ($smses as $sms) {
 
     printf("<tr>" .
            "<td><input type='checkbox' data-utime='%s' data-success='%s'></td>" .
-           "<td title='%s' style='white-space:nowrap'>%s</td>" .
-           "<td title='%s' style='white-space:nowrap'>%s</td>" .
+           "<td title='%s' class='no-wrap'>%s</td>" .
+           "<td title='%s' class='no-wrap'>%s</td>" .
            "<td>%s</td>" .
            "<td>%s</td>" .
-           "<td style='white-space:nowrap; text-align:right'>%s</td>" .
-           "<td style='white-space:nowrap; text-align:right; color:#888'>%s</td>" .
+           "<td class='no-wrap numeric'>%s</td>" .
+           "<td class='no-wrap numeric gray'>%s</td>" .
            "</tr>\n",
            $sms['date'], $is_transaction_successful ? 'true' : 'false',  // utime in microseconds
            htmlspecialchars($body), strftime('%F %T', $sms['date']/1000),  // body title and date stamp content

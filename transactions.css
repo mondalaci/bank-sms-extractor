@@ -1,8 +1,6 @@
 body {
     font-family: arial,sans-serif;
-    color: #000;
     font-size: 13px;
-    color: #333;
 }
 
 table {
@@ -35,4 +33,16 @@ th {
 
 input#reload {
     width: 100%;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.numeric {
+    text-align: right;
+}
+
+.gray {
+    color: #888;
 }

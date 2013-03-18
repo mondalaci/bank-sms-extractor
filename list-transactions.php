@@ -93,7 +93,7 @@ foreach ($smses as $sms) {
            "<td style='white-space:nowrap; text-align:right; color:#888'>%s</td>" .
            "</tr>\n",
            htmlspecialchars($body),
-           $sms['readable_date'],
+           strftime('%F %T', $sms['date']/1000),
            $card_number,
            $partner,
            $extended_comment,

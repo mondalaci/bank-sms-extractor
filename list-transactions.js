@@ -9,7 +9,7 @@ function restoreCheckboxes()
         } else {
             $(this).prop('disabled', true);
             $(this).prop('checked', true);
-            $(this).closest('tr').addClass('unsuccessful');
+            $(this).closest('tr').addClass('unsuccessful gray');
         }
     });
 }

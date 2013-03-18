@@ -7,6 +7,8 @@
 <body>
 <table>
 <?php
+@include __DIR__ . '/card-numbers-to-owners.php';
+
 $smses = simplexml_load_file('sms.xml');
 
 foreach ($smses as $sms) {
@@ -82,19 +84,21 @@ foreach ($smses as $sms) {
         continue;
     }
 
+    $card_owner = @array_key_exists($card_number, $card_number_to_owner)
+                      ? $card_number_to_owner[$card_number]
+                      : sprintf('Anonymous [%s]', $card_number);
     $extended_comment = $subject . ($comment ? ": <i>$comment</i>" : "");
 
     printf("<tr>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
-           "<td>%s</td>" .
+           "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td>%s</td>" .
            "<td>%s</td>" .
            "<td style='white-space:nowrap; text-align:right'>%s</td>" .
            "<td style='white-space:nowrap; text-align:right; color:#888'>%s</td>" .
            "</tr>\n",
-           htmlspecialchars($body),
-           strftime('%F %T', $sms['date']/1000),
-           $card_number,
+           htmlspecialchars($body), strftime('%F %T', $sms['date']/1000),  // body title and date stamp content
+           $card_number, $card_owner,
            $partner,
            $extended_comment,
            $amount,

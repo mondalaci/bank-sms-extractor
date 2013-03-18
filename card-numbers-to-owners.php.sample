@@ -1,0 +1,6 @@
+<?php
+# Edit this file and rename it as card-numbers-to-owners.php
+$card_number_to_owner = array(
+    1234 => 'Me',
+    5678 => 'My Company',
+);

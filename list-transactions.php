@@ -117,6 +117,7 @@ foreach ($smses as $sms) {
 
 ?>
 </table>
+<input type='button' id='reload' value='Reload'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="list-transactions.js"></script>
 </body>

@@ -11,7 +11,7 @@ function restoreCheckboxes()
             $(this).prop('checked', true);
             $(this).closest('tr').addClass('unsuccessful');
         }
-    })
+    });
 }
 
 $(function() {
@@ -21,5 +21,9 @@ $(function() {
         var utime = $(this).data('utime');
         var isChecked = $(this).is(':checked');
         localStorage.setItem(utime, isChecked);
+    });
+
+    $('input#reload').click(function() {
+        location.reload();
     });
 });

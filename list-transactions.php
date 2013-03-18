@@ -90,13 +90,14 @@ foreach ($smses as $sms) {
         continue;
     }
 
+    $is_transaction_successful = $subject != 'SIKERTELEN Kàrtyàs vàsàrlàs/zàrolàs';
     $card_owner = @array_key_exists($card_number, $card_number_to_owner)
                       ? $card_number_to_owner[$card_number]
                       : sprintf('Anonymous [%s]', $card_number);
     $extended_comment = $subject . ($comment ? ": <i>$comment</i>" : "");
 
     printf("<tr>" .
-           "<td><input type='checkbox' data-utime='%s'></td>" .
+           "<td><input type='checkbox' data-utime='%s' data-success='%s'></td>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td title='%s' style='white-space:nowrap'>%s</td>" .
            "<td>%s</td>" .
@@ -104,7 +105,7 @@ foreach ($smses as $sms) {
            "<td style='white-space:nowrap; text-align:right'>%s</td>" .
            "<td style='white-space:nowrap; text-align:right; color:#888'>%s</td>" .
            "</tr>\n",
-           $sms['date'],  // utime in microseconds
+           $sms['date'], $is_transaction_successful ? 'true' : 'false',  // utime in microseconds
            htmlspecialchars($body), strftime('%F %T', $sms['date']/1000),  // body title and date stamp content
            $card_number, $card_owner,
            $partner,

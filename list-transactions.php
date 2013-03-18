@@ -12,6 +12,12 @@
 $smses = simplexml_load_file('sms.xml');
 
 foreach ($smses as $sms) {
+    if (@$_GET['dump'] == 'true') {
+        print '<pre>';
+        var_dump($sms);
+        print '</pre>';
+    }
+
     if ($sms['contact_name'] != 'OTP Bank') {
         continue;
     }

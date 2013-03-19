@@ -22,18 +22,14 @@ function get_transactions()
         $body = (string)$sms['body'];
         $matches = array($body);
 
-        $is_transaction_successful = false;
         $balance = $comment = '';
         $partner = 'OTP';
 
         if (preg_match('/\.{3}([0-9]{4}) Szàmla \(([0-9]{6})\) (.+):(.+); (.+); OTPdirekt/U',
                        $body, $matches))
         {
-            $is_transaction_successful = true;
             $type = 'bank account transfer';
             list($body, $card_number, $day, $subject, $amount, $payload) = $matches;
-
-            $unknown_values = array();
 
             $fields = explode('; ', $payload);
             foreach ($fields as $field) {
@@ -65,7 +61,6 @@ function get_transactions()
                               'Kàrtyaszàm: ...([0-9]{4})(.*) - OTPdirekt/U',
                               $body, $matches))
         {
-            $is_transaction_successful = true;
             list($body, $timestamp, $subject, $amount, $partner, $card_number, $balance) = $matches;
             $type = 'credit card transfer';
 
@@ -83,28 +78,29 @@ function get_transactions()
             $type = 'unknown';
         }
 
-        if (!$is_transaction_successful) {
+        if ($type == 'confirmation') {
             continue;
         }
 
-        $is_transaction_successful = $subject != 'SIKERTELEN Kàrtyàs vàsàrlàs/zàrolàs';
+        $is_transaction_successful = @$subject != 'SIKERTELEN Kàrtyàs vàsàrlàs/zàrolàs' && $type != 'unknown';
         $card_owner = @array_key_exists($card_number, $card_number_to_owner)
-                          ? $card_number_to_owner[$card_number]
-                          : sprintf('Anonymous [%s]', $card_number);
-        $extended_comment = $subject . ($comment ? ": <i>$comment</i>" : "");
+                          ? $card_number_to_owner[@$card_number]
+                          : sprintf('Anonymous [%s]', @$card_number);
+        $extended_comment = @$subject . ($comment ? ": <i>$comment</i>" : "");
 
         $results[] = array(
+            'type' => $type,
             'body' => $sms['body'],
             'date' => $sms['date'],
             'is_transaction_successful' => $is_transaction_successful,
             'datestamp' => strftime('%F %T', $sms['date']/1000),
-            'card_number' => $card_number,
+            'card_number' => @$card_number,
             'card_owner' => $card_owner,
             'partner' => $partner,
-            'subject' => $subject,
+            'subject' => @$subject,
             'comment' => $comment,
             'extended_comment' => $extended_comment,
-            'amount' => $amount,
+            'amount' => @$amount,
             'balance' => $balance,
         );
     }

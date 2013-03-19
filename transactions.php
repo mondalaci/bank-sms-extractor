@@ -86,20 +86,17 @@ function get_transactions()
         $card_owner = @array_key_exists($card_number, $card_number_to_owner)
                           ? $card_number_to_owner[@$card_number]
                           : sprintf('Anonymous [%s]', @$card_number);
-        $extended_comment = @$subject . ($comment ? ": <i>$comment</i>" : "");
 
         $results[] = array(
             'type' => $type,
             'body' => $sms['body'],
             'date' => $sms['date'],
             'is_transaction_successful' => $is_transaction_successful,
-            'datestamp' => strftime('%F %T', $sms['date']/1000),
             'card_number' => @$card_number,
             'card_owner' => $card_owner,
             'partner' => $partner,
             'subject' => @$subject,
             'comment' => $comment,
-            'extended_comment' => $extended_comment,
             'amount' => @$amount,
             'balance' => $balance,
         );

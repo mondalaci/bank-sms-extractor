@@ -5,6 +5,8 @@ function get_transactions()
 {
     global $card_number_to_owner;
 
+    $otpdirekt_phone_number = '06709400700';
+
     $results = array();
     $smses = simplexml_load_file('sms.xml');
 
@@ -15,7 +17,7 @@ function get_transactions()
             print '</pre>';
         }
 
-        if ($sms['contact_name'] != 'OTP Bank') {
+        if ($sms['address'] != $otpdirekt_phone_number) {
             continue;
         }
 

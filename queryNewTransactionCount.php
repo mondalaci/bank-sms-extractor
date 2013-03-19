@@ -1,5 +1,5 @@
 <?php
-@include __DIR__ . '/transactions.php';
+require __DIR__ . '/transactions.php';
 
 $last_utime = $_GET['last_utime'];
 $transactions = get_transactions();

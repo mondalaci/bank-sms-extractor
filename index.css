@@ -15,6 +15,10 @@ tr.unsuccessful td {
     text-decoration: line-through;
 }
 
+tr.checked td {
+    background-color: #bbb;
+}
+
 tr:hover {
     background-color: #ddd;
 }

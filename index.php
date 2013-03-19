@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<link rel="stylesheet" href="transactions.css">
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 <table>
@@ -50,6 +50,6 @@ foreach ($transactions as $transaction) {
 </table>
 <input type='button' id='reload' value='Reload'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="list-transactions.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

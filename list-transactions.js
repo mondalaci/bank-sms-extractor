@@ -74,6 +74,5 @@ $(function() {
     }, false);
 
     timerId = null;
-    updateReloadButton();
     keepReloadButtonUpdated();
 });

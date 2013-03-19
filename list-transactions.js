@@ -35,6 +35,8 @@ function keepReloadButtonUpdated()
         return;
     }
 
+    updateReloadButton()
+
     timerId = setInterval(function() {
         updateReloadButton();
 

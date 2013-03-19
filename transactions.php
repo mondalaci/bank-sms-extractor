@@ -11,6 +11,7 @@ function get_transactions()
     $smses = simplexml_load_file('sms.xml');
 
     foreach ($smses as $sms) {
+
         if (@$_GET['dump'] == 'true') {
             print '<pre>';
             var_dump($sms);
@@ -84,22 +85,22 @@ function get_transactions()
             continue;
         }
 
-        $is_transaction_successful = @$subject != 'SIKERTELEN Kàrtyàs vàsàrlàs/zàrolàs' && $type != 'unknown';
+        $is_transaction_successful = $subject != 'SIKERTELEN Kàrtyàs vàsàrlàs/zàrolàs' && $type != 'unknown';
         $card_owner = @array_key_exists($card_number, $card_number_to_owner)
-                          ? $card_number_to_owner[@$card_number]
-                          : sprintf('Anonymous [%s]', @$card_number);
+                          ? $card_number_to_owner[$card_number]
+                          : sprintf('Anonymous [%s]', $card_number);
 
         $results[] = array(
             'type' => $type,
             'body' => $sms['body'],
             'date' => $sms['date'],
             'is_transaction_successful' => $is_transaction_successful,
-            'card_number' => @$card_number,
+            'card_number' => $card_number,
             'card_owner' => $card_owner,
             'partner' => $partner,
-            'subject' => @$subject,
+            'subject' => $subject,
             'comment' => $comment,
-            'amount' => @$amount,
+            'amount' => $amount,
             'balance' => $balance,
         );
     }

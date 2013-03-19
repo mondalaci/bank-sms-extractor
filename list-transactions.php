@@ -7,7 +7,7 @@
 <body>
 <table>
 <?php
-@include __DIR__ . '/transactions.php';
+require __DIR__ . '/transactions.php';
 
 $column_count = 7;
 
@@ -16,7 +16,7 @@ $transactions = get_transactions();
 foreach ($transactions as $transaction) {
 
     $datestamp = strftime('%F %T', $transaction['date']/1000);
-    $extended_comment = @$transaction['subject'] .
+    $extended_comment = $transaction['subject'] .
                         ($transaction['comment'] ? ": <i>" . htmlspecialchars($transaction['comment']) . "</i>" : "");
 
     $second_to_last_cell_content = $transaction['type'] == 'unknown'

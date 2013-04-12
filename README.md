@@ -7,4 +7,8 @@ This is a useful tool which extracts and displays your transaction records out o
 2. Customize `config.sh.sample` as `config.sh` and optionally `card-numbers-to-owners.php.sample` as `card-numbers-to-owners.php` and include `update-latest-sms.sh` into your crontab.  (The latter is needed because currently the archive mode of the SMS Backup & Restore app doesn't work reliably so we've got to grab the latest archive and put it into a webserver-visible directory as a fixed filename.)
 3. Hit `index.php` from your web browser.
 
+You should see something like this:
+
 ![screenshot](screenshot.png)
+
+Enjoy!

@@ -5,6 +5,6 @@ This is a useful tool which extracts and displays your transaction records out o
 
 1. Install the [SMS Backup & Restore](https://play.google.com/store/apps/details?id=com.riteshsahu.SMSBackupRestore) Android app along with its [addon](https://play.google.com/store/apps/details?id=com.riteshsahu.SMSBackupRestoreNetworkAddon) then make it back up your SMS-es to your Dropbox account on a regular basis.
 2. Customize `config.sh.sample` as `config.sh` and optionally `card-numbers-to-owners.php.sample` as `card-numbers-to-owners.php` and include `update-latest-sms.sh` into your crontab.  (The latter is needed because currently the archive mode of the SMS Backup & Restore app doesn't work reliably so we've got to grab the latest archive and put it into a webserver-visible directory as a fixed filename.)
-3. Hit `list-transactions.php` from your web browser.
+3. Hit `index.php` from your web browser.
 
 ![screenshot](screenshot.png)

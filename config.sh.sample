@@ -1,2 +1,2 @@
 # Edit this file and rename as config.sh
-destination_sms=~/bank-sms-extractor/sms.xml
+destination_sms_backup=~/bank-sms-extractor/sms.xml
